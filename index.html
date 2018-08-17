@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Fahrenheit<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -78,8 +78,8 @@
         </div>
 
         <div class="row">
-          <label id="outLabel" for="out">Fahreinheit</label>
-          <input id="out" data-value="fahreinheit" type="text" name="" value="">
+          <label id="outLabel" for="out">Fahrenheit</label>
+          <input id="out" data-value="fahrenheit" type="text" name="" value="">
         </div>
         <div class="row">
           <button id="switch" type="button" name="button">< - ></button>
@@ -113,8 +113,8 @@
         if (input.dataset.value == "celsius"){
           saveInput = input.value;
           saveOutput = output.value;
-          input.dataset.value = "fahreinheit";
-          inL.innerHTML = "Fahreinheit";
+          input.dataset.value = "fahrenheit";
+          inL.innerHTML = "Fahrenheit";
           outL.innerHTML = "Celsius";
           input.value = saveOutput;
           output.value = saveInput;
@@ -124,7 +124,7 @@
           saveOutput = output.value;
           input.dataset.value = "celsius";
           inL.innerHTML = "Celsius";
-          outL.innerHTML = "Fahreinheit";
+          outL.innerHTML = "Fahrenheit";
           input.value = saveOutput;
           output.value = saveInput;
           switcher.style = "background: linear-gradient(-90deg, #ff605b, #96fbff);";
@@ -133,17 +133,17 @@
       })
 
       input.addEventListener('input', e =>{
-        //fahreinheit to celsius formula
+        //Fahrenheit to celsius formula
         //let cToF = Math.round((input.value*1.8)+32);
         let cToF = decimais((input.value*1.8)+32);
-        //celsius to fahreinheit formula
+        //celsius to Fahrenheit formula
 //      let fToC = Math.round((input.value-32)/1.8);
         let fToC = decimais((input.value-32)/1.8);
 
-        //fahreinheit to celsius
+        //Fahrenheit to celsius
         if (input.dataset.value == "celsius" && input.value != ""){
           output.value = cToF;
-        } else if (input.dataset.value == "fahreinheit" && input.value != ""){
+        } else if (input.dataset.value == "fahrenheit" && input.value != ""){
           output.value = fToC;
         } else {
           input.value = "";
