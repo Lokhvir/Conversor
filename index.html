@@ -76,7 +76,6 @@
 
       #switch:hover {
         background-position: right bottom;
-
         transition: all .8s ease;
       }
 
@@ -86,12 +85,12 @@
 
     <main>
       <div class="container">
-        <div id="input1" class="row">
+        <div class="row">
           <label id="inLabel" data-value="celsius" for=in"">Celsius</label>
-          <input id="in" data-value="celsius" type="text" placeholder="Digite aqui" name="" value="">
+          <input id="in" data-value="celsius" type="text" name="" value="">
         </div>
 
-        <div id="input2" class="row">
+        <div class="row">
           <label id="outLabel" for="out">Fahrenheit</label>
           <input id="out" data-value="fahrenheit" type="text" name="" value="">
         </div>
@@ -104,6 +103,7 @@
     </main>
 
     <script type="text/javascript">
+
       let input = document.querySelector("#in");
       let output = document.querySelector("#out");
       let switcher = document.querySelector("#switch");
@@ -154,13 +154,32 @@
 //      let fToC = Math.round((input.value-32)/1.8);
         let fToC = decimais((input.value-32)/1.8);
 
-        //Fahrenheit to celsius
+
         if (input.dataset.value == "celsius" && input.value != "" && input.value != "-"){
           output.value = cToF;
         } else if (input.dataset.value == "fahrenheit" && input.value != "" && input.value != "-"){
           output.value = fToC;
         } else if (input.value == "-"){
             output.value = "";
+        } else{
+          input.value = "";
+          output.value = "";
+        }
+      });
+
+      output.addEventListener('input', e=>{
+        //Fahrenheit to celsius formula
+        let cToF = decimais((output.value*1.8)+32);
+        //celsius to Fahrenheit formula
+        let fToC = decimais((output.value-32)/1.8);
+
+        //Fahrenheit to celsius
+        if (output.dataset.value == "fahrenheit" && output.value != "" && output.value != "-"){
+          input.value = fToC;
+        } else if (output.dataset.value == "celsius" && output.value != "" && output.value != "-"){
+          input.value = cToF;
+        } else if (output.value == "-"){
+          input.value = "";
         } else{
           input.value = "";
           output.value = "";
