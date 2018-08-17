@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Conversor</title>
+  </head>
+  <body>
+    <style media="screen">
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #ff433d, #99ecff);
+      }
+
+      main{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 800px;
+      }
+
+      .container label {
+        text-shadow: 0.5px 0.5px #000;
+      }
+
+      input {
+        border-radius: 50px;
+        border: 0;
+        padding: 0 20px;
+        font-size: 32px;
+        text-align: center;
+        height: 80px;
+        width: 250px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 40%;
+        flex-direction: column;
+      }
+
+      label {
+        font-size: 28px;
+        color: #fff;
+      }
+
+      #switch {
+        width: 100px;
+        border: 0;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        background: linear-gradient(-90deg, #ff605b, #96fbff);
+      }
+
+      #switch:hover {
+        color:
+      }
+    </style>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <label id="inLabel" for=in"">Celsius</label>
+          <input id="in" data-value="celsius" type="text" name="es2" value="es">
+        </div>
+
+        <div class="row">
+          <label id="outLabel" for="out">Fahreinheit</label>
+          <input id="out" data-value="fahreinheit" type="text" name="" value="">
+        </div>
+        <div class="row">
+          <button id="switch" type="button" name="button">< - ></button>
+        </div>
+
+
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      let input = document.querySelector("#in");
+      let output = document.querySelector("#out");
+      let switcher = document.querySelector("#switch");
+      let saveInput;
+      let saveOutput;
+      let cToF = (input.value*1.8)+32;
+      let fToC = (input.value-32)/1.8;
+
+      window.addEventListener('load', f => {
+        input.value = "";
+        output.value = "";
+      });
+
+      function decimais (x){
+        return Number.parseFloat(x).toFixed(1);
+      }
+
+      switcher.addEventListener('click', e=> {
+        let inL = document.querySelector("#inLabel");
+        let outL = document.querySelector("#outLabel");
+        if (input.dataset.value == "celsius"){
+          saveInput = input.value;
+          saveOutput = output.value;
+          input.dataset.value = "fahreinheit";
+          inL.innerHTML = "Fahreinheit";
+          outL.innerHTML = "Celsius";
+          input.value = saveOutput;
+          output.value = saveInput;
+          switcher.style = "background: linear-gradient(90deg, #ff605b, #96fbff);";
+        } else {
+          saveInput = input.value;
+          saveOutput = output.value;
+          input.dataset.value = "celsius";
+          inL.innerHTML = "Celsius";
+          outL.innerHTML = "Fahreinheit";
+          input.value = saveOutput;
+          output.value = saveInput;
+          switcher.style = "background: linear-gradient(-90deg, #ff605b, #96fbff);";
+        }
+        console.log(input.dataset.value);
+      })
+
+      input.addEventListener('input', e =>{
+        //fahreinheit to celsius formula
+        //let cToF = Math.round((input.value*1.8)+32);
+        let cToF = decimais((input.value*1.8)+32);
+        //celsius to fahreinheit formula
+//      let fToC = Math.round((input.value-32)/1.8);
+        let fToC = decimais((input.value-32)/1.8);
+
+        //fahreinheit to celsius
+        if (input.dataset.value == "celsius" && input.value != ""){
+          output.value = cToF;
+        } else if (input.dataset.value == "fahreinheit" && input.value != ""){
+          output.value = fToC;
+        } else {
+          input.value = "";
+          output.value = "";
+        }
+      });
+
+
+    </script>
+  </body>
+</html>
