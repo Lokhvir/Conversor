@@ -3,86 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Conversor</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <style media="screen">
-      body {
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to right, #ff433d, #99ecff);
-      }
-
-      main{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-      }
-      .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        width: 800px;
-      }
-
-      .container label {
-        text-shadow: 0.5px 0.5px #000;
-      }
-
-      input {
-        border-radius: 50px;
-        border: 0;
-        padding: 0 20px;
-        font-size: 32px;
-        text-align: center;
-        height: 80px;
-        width: 250px;
-        box-shadow: 0px 0px 6px #777;
-      }
-
-      #in::placeholder{
-        font-size: 22px;
-        opacity: 0.25;
-      }
-
-      .row {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-basis: 40%;
-        flex-direction: column;
-      }
-
-      label {
-        font-size: 28px;
-        color: #fff;
-      }
-
-      #switch {
-        width: 100px;
-        border: 0;
-        padding: 15px;
-        border-radius: 5px;
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        background: linear-gradient(to right, #ff605b, #96fbff);
-        background-position: left bottom;
-        background-size: 125% 100%;
-        box-shadow: 1px 1px 4px #777;
-      }
-
-      #switch:hover {
-        background-position: right bottom;
-        transition: all .8s ease;
-      }
-
-
-
-    </style>
-
     <main>
       <div class="container">
         <div class="row">
@@ -95,96 +18,12 @@
           <input id="out" data-value="fahrenheit" type="text" name="" value="">
         </div>
         <div class="row">
-          <button id="switch" type="button" name="button">< - ></button>
+          <button id="switch" type="button" name="button">Inverter</button>
         </div>
-
-
       </div>
     </main>
 
-    <script type="text/javascript">
-
-      let input = document.querySelector("#in");
-      let output = document.querySelector("#out");
-      let switcher = document.querySelector("#switch");
-      let saveInput;
-      let saveOutput;
-      let cToF = (input.value*1.8)+32;
-      let fToC = (input.value-32)/1.8;
-
-      window.addEventListener('load', f => {
-        input.value = "";
-        output.value = "";
-      });
-
-      function decimais (x){
-        return Number.parseFloat(x).toFixed(1);
-      }
-
-      switcher.addEventListener('click', e=> {
-        let inL = document.querySelector("#inLabel");
-        let outL = document.querySelector("#outLabel");
-        if (input.dataset.value == "celsius"){
-          saveInput = input.value;
-          saveOutput = output.value;
-          input.dataset.value = "fahrenheit";
-          inL.innerHTML = "Fahrenheit";
-          outL.innerHTML = "Celsius";
-          input.value = saveOutput;
-          output.value = saveInput;
-          //switcher.style = "background: linear-gradient(to left, #ff605b, #96fbff);";
-        } else {
-          saveInput = input.value;
-          saveOutput = output.value;
-          input.dataset.value = "celsius";
-          inL.innerHTML = "Celsius";
-          outL.innerHTML = "Fahrenheit";
-          input.value = saveOutput;
-          output.value = saveInput;
-          //switcher.style = "background: linear-gradient(to right, #ff605b, #96fbff);";
-        }
-        console.log(input.dataset.value);
-      })
-
-      input.addEventListener('input', e =>{
-        //Fahrenheit to celsius formula
-        //let cToF = Math.round((input.value*1.8)+32);
-        let cToF = decimais((input.value*1.8)+32);
-        //celsius to Fahrenheit formula
-//      let fToC = Math.round((input.value-32)/1.8);
-        let fToC = decimais((input.value-32)/1.8);
-
-
-        if (input.dataset.value == "celsius" && input.value != "" && input.value != "-"){
-          output.value = cToF;
-        } else if (input.dataset.value == "fahrenheit" && input.value != "" && input.value != "-"){
-          output.value = fToC;
-        } else if (input.value == "-"){
-            output.value = "";
-        } else{
-          input.value = "";
-          output.value = "";
-        }
-      });
-
-      output.addEventListener('input', e=>{
-        //Fahrenheit to celsius formula
-        let cToF = decimais((output.value*1.8)+32);
-        //celsius to Fahrenheit formula
-        let fToC = decimais((output.value-32)/1.8);
-
-        //Fahrenheit to celsius
-        if (output.dataset.value == "fahrenheit" && output.value != "" && output.value != "-"){
-          input.value = fToC;
-        } else if (output.dataset.value == "celsius" && output.value != "" && output.value != "-"){
-          input.value = cToF;
-        } else if (output.value == "-"){
-          input.value = "";
-        } else{
-          input.value = "";
-          output.value = "";
-        }
-      });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
